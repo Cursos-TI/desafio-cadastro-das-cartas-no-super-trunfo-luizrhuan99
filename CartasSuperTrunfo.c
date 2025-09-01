@@ -1,22 +1,62 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+
+struct Carta {
+    unsigned long int populacao;
+    double area;
+    double pib;
+    int pontosTuristicos;
+    double densidade;
+    double pibPerCapita;
+    float superPoder;
+};
+
+
+void calcularAtributos(struct Carta *c) {
+    c->densidade = (double)c->populacao / c->area;
+    c->pibPerCapita = c->pib / (double)c->populacao;
+    c->superPoder = (float)(c->populacao + c->area + c->pib + 
+                            c->pontosTuristicos + c->pibPerCapita + (1.0 / c->densidade));
+}
 
 int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
+    struct Carta carta1, carta2
+
     
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
+    printf("=== Carta 1 ===\n");
+    printf("Digite a populacao: ");
+    scanf("%lu", &carta1.populacao);
+    printf("Digite a area: ");
+    scanf("%lf", &carta1.area);
+    printf("Digite o PIB: ");
+    scanf("%lf", &carta1.pib);
+    printf("Digite o numero de pontos turisticos: ");
+    scanf("%d", &carta1.pontosTuristicos);
+
+
+    printf("\n=== Carta 2 ===\n");
+    printf("Digite a populacao: ");
+    scanf("%lu", &carta2.populacao);
+    printf("Digite a area: ");
+    scanf("%lf", &carta2.area);
+    printf("Digite o PIB: ");
+    scanf("%lf", &carta2.pib);
+    printf("Digite o numero de pontos turisticos: ");
+    scanf("%d", &carta2.pontosTuristicos);
+
     
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    calcularAtributos(&carta1);
+    calcularAtributos(&carta2);
+
+    
+    printf("\n=== Comparacao de Cartas ===\n");
+    printf("Populacao: Carta 1 venceu (%d)\n", carta1.populacao > carta2.populacao);
+    printf("Area: Carta 1 venceu (%d)\n", carta1.area > carta2.area);
+    printf("PIB: Carta 1 venceu (%d)\n", carta1.pib > carta2.pib);
+    printf("Pontos Turisticos: Carta 1 venceu (%d)\n", carta1.pontosTuristicos > carta2.pontosTuristicos);
+    printf("Densidade Populacional: Carta 1 venceu (%d)\n", carta1.densidade < carta2.densidade);
+    printf("PIB per Capita: Carta 1 venceu (%d)\n", carta1.pibPerCapita > carta2.pibPerCapita);
+    printf("Super Poder: Carta 1 venceu (%d)\n", carta1.superPoder > carta2.superPoder);
 
     return 0;
 }
